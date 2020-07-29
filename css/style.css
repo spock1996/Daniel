@@ -376,7 +376,7 @@ body {
 }
 
 .box:first-child {
-    background-image: url(authorImg/author.jpeg);
+    background-image: url("authorImg/author.jpeg");
     background-size: cover;
     background-position: center;
     padding-right: 3%;
