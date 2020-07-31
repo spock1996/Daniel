@@ -1,52 +1,50 @@
 $(document).ready(function() {
-    $(".js--section-features").waypoint(function(direction) {
+    /* For the sticky navigation */
+    $('.js-trigger').waypoint(function(direction) {
         if (direction == "down") {
-            $("nav").addClass("sticky");
+            $('nav').addClass('sticky');
+        } else {
+            $('nav').removeClass('sticky');
         }
-        else {
-            $("nav").removeClass("sticky")
-        }
-    })
-
-    $("#home").click(function() {
-        $("html, body").animate({scrollTop: $("#start").offset().top}, 1000);
+    }, {
+      offset: '60px;'
     });
 
-    $("#up").click(function() {
-        $("html, body").animate({scrollTop: $("#start").offset().top}, 1000);
-    });
 
-    $("#last-work").click(function() {
-        $("html, body").animate({scrollTop: $("#work-pic").offset().top}, 1000);
-    });
-
-    $("#about").click(function() {
-        $("html, body").animate({scrollTop: $(".author-name").offset().top}, 1000);
-    });
-
-    $("#email").click(function() {
-        $("html, body").animate({scrollTop: $(".contact").offset().top}, 1000);
-    });
-
-    $("#btn-click").click(function() {
-        $("html, body").animate({scrollTop: $("#work-pic").offset().top}, 1000);
-    });
-
-    /* Mobile navigation */
-    $('.js--nav-icon').click(function() {
+     /* Mobile navigation */
+     $('.js--nav-icon').click(function() {
         var nav = $('.js--main-nav');
-        var icon = $('.js--nav-icon i');
+        var icon = $('.js--nav-icon .burger');
         
         nav.slideToggle(200);
         
-        if (icon.hasClass('ion-navicon-round')) {
-            icon.addClass('ion-close-round');
+        if (icon.hasAttribute ( 'name ','ion-navicon-round')) {
+            icon.addAttr('name', 'close-outline');
             icon.removeClass('ion-navicon-round');
         } else {
             icon.addClass('ion-navicon-round');
             icon.removeClass('ion-close-round');
         }        
     });
+
+    /* Navigation scroll */
+    $(function() {
+        $('a[href*=\\#]:not([href=\\#])').click(function() {
+          if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            if (target.length) {
+              $('html,body').animate({
+                scrollTop: target.offset().top
+              }, 1000);
+              return false;
+            }
+          }
+        });
+      });
+
+
+
 
 
 });
